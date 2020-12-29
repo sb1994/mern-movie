@@ -17,6 +17,7 @@ const movies = require("./api/routes/movies");
 
 //making express use the router
 app.use("/api/movies", movies);
+app.use("/api/users", users);
 
 //setup the middleware
 app.use(notFound);
