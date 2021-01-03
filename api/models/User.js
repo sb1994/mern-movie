@@ -34,27 +34,11 @@ const UserSchema = new Schema({
     type: String,
     default: "",
   },
-  friends: [
+  watchedMovies: [
     {
-      user: {
+      movie: {
         type: Schema.Types.ObjectId,
-        ref: "users",
-      },
-      status: {
-        type: String,
-        default: "requested",
-      },
-    },
-  ],
-  pendingFriendsRequests: [
-    {
-      user: {
-        type: Schema.Types.ObjectId,
-        ref: "users",
-      },
-      status: {
-        type: String,
-        default: "pending",
+        ref: "movies",
       },
     },
   ],

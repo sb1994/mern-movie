@@ -20,8 +20,8 @@ app.use("/api/movies", movies);
 app.use("/api/users", users);
 
 //setup the middleware
-app.use(notFound);
 app.use(errorHandler);
+app.use(notFound);
 const PORT = 5000 || process.env.PORT;
 app.listen(PORT, () => console.log("The Server has started on: " + PORT));
 

@@ -20,7 +20,7 @@ const MovieSchema = new Schema({
   },
   genres: [{ id: { type: String }, name: { type: String } }],
   watched: [{ user: { type: Schema.Types.ObjectId, ref: "users" } }],
-  reviews: [{ user: { type: Schema.Types.ObjectId, ref: "reviews" } }],
+  reviews: [{ review: { type: Schema.Types.ObjectId, ref: "reviews" } }],
   likes: [{ user: { type: Schema.Types.ObjectId, ref: "users" } }],
   ratings: [
     {
