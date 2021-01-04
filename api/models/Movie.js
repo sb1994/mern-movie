@@ -1,7 +1,26 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-// Create Schema
+const ReviewSchema = mongoose.Schema({
+  rating: { type: Number, required: true },
+  comment: { type: String, required: true },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: "users",
+  },
+  movie: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: "movies",
+  },
+  created: {
+    type: Date,
+    default: Date.now,
+  },
+});
+
+// Create Movie Schema
 const MovieSchema = new Schema({
   title: {
     type: String,
@@ -20,14 +39,8 @@ const MovieSchema = new Schema({
   },
   genres: [{ id: { type: String }, name: { type: String } }],
   watched: [{ user: { type: Schema.Types.ObjectId, ref: "users" } }],
-  reviews: [{ review: { type: Schema.Types.ObjectId, ref: "reviews" } }],
+  reviews: [ReviewSchema],
   likes: [{ user: { type: Schema.Types.ObjectId, ref: "users" } }],
-  ratings: [
-    {
-      user: { type: Schema.Types.ObjectId, ref: "users" },
-      rating: { type: Schema.Types.Number },
-    },
-  ],
   tmdb_id: {
     type: String,
   },
