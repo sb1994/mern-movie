@@ -17,7 +17,8 @@ router.get("/", async (req, res) => {
 });
 router.get("/:id", async (req, res) => {
   console.log(req.params.id);
-  const movie = await Movie.findById(req.params.id);
+  const movie = await Movie.findById(req.params.id).populate("reviews.user");
+  console.log(movie);
   res.json(movie);
 });
 router.post(

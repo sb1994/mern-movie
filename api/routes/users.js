@@ -20,7 +20,7 @@ router.post(
   asyncHandler(async (req, res) => {
     let { email, password } = req.body;
     //find the user by email
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email }).populate("watchedMovies.movie");
 
     //if the user exist we then check the password
 
@@ -39,13 +39,7 @@ router.post(
         //login
         console.log(token);
         res.json({
-          user: {
-            _id: user._id,
-            name: user.name,
-            email: user.email,
-            profile_pic: user.profile_pic,
-            isAdmin: user.isAdmin,
-          },
+          user,
           token,
         });
       } else {
@@ -65,7 +59,9 @@ router.get(
     // console.log(req.user);
     let { id } = req.params;
     //find the user by email
-    const user = await User.findById(id).select("-password");
+    const user = await User.findById(id)
+      .populate("watchedMovies.movie")
+      .select("-password");
     console.log(user);
 
     //if the user exist we then check the password
