@@ -12,6 +12,7 @@ import React, { Component } from "react";
 import { getCurrentUser } from "./store/actions/userAuthActions";
 import setUserToken from "./utils/setUserToken";
 import store from "./store";
+import MovieListScreen from "./screens/movies/MovieListScreen";
 
 if (localStorage.token) {
   setUserToken(localStorage.token);
@@ -35,6 +36,7 @@ class App extends Component {
               <Route path="/register" component={RegisterScreen} />
               <Route exact path="/" component={LandingScreen} />
               <Route exact path="/profile" component={ProfileScreen} />
+              <Route exact path="/movies" component={MovieListScreen} />
             </Switch>
           </Container>
         </main>

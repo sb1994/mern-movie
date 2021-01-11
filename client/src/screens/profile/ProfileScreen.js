@@ -16,7 +16,6 @@ const ProfileScreen = () => {
     if (!isAuthenticated || isAuthenticated === undefined) {
       history.push("/login");
     } else {
-      console.log("on profile page");
       dispatch(getCurrentUser());
     }
   }, [isAuthenticated, history]);
@@ -30,16 +29,13 @@ const ProfileScreen = () => {
           <p>{user.name}</p>
 
           <Row>
+            <Col lg={12}>
+              <h1>Watched Movies</h1>
+            </Col>
             {user.watchedMovies !== undefined ? (
               <WatchedMovieList watched={user.watchedMovies} />
             ) : null}
           </Row>
-          {/* <Row>
-            <ProfileSocialPanel user={currentUser} history={history} />
-          </Row>
-          <Row>
-            <PostList posts={posts} history={history} />
-          </Row> */}
         </Col>
       ) : null}
     </div>

@@ -21,7 +21,7 @@ export const registerUser = (userData) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: types.FAIL_AUTH,
-      payload: error.response.data,
+      payload: error.response.data.message,
     });
   }
 };
@@ -107,7 +107,7 @@ export const loginAuth = (email, password) => async (dispatch) => {
     console.log(data.message);
     dispatch({
       type: types.FAIL_AUTH,
-      payload: error.data.message,
+      payload: error.response.data.message,
     });
   }
 };

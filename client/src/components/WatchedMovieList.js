@@ -1,20 +1,18 @@
 import React from "react";
-import { Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
 import WatchedMovieListItem from "./WatchedMovieListItem";
 
 const WatchedMovieList = ({ watched }) => {
   let renderMovies = watched.map((watch) => {
-    console.log(watch);
     let { movie } = watch;
-    return <WatchedMovieListItem movie={movie} />;
+    return <WatchedMovieListItem key={movie._id} movie={movie} />;
   });
 
-  console.log(renderMovies);
   return (
-    <>
+    <Col lg={12}>
       <Row>{renderMovies}</Row>
-    </>
+    </Col>
   );
 };
 
