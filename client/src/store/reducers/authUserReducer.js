@@ -22,6 +22,14 @@ const auth = (state = initialState, action) => {
         error: null,
         loading: false,
       };
+    case types.SET_LOGGED_OUT_USER:
+      return {
+        ...state,
+        isAuthenticated: false,
+        user: {},
+        error: null,
+        loading: false,
+      };
     case types.SET_LOGGED_USER_REQUEST:
       return {
         ...state,

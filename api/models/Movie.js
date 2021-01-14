@@ -31,9 +31,13 @@ const MovieSchema = new Schema({
   budget: {
     type: Number,
   },
+  cast: [],
+  crew: [],
   homepage: {
     type: String,
   },
+
+  videos: [],
   text: {
     type: String,
   },

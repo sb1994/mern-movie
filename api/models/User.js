@@ -34,7 +34,7 @@ const UserSchema = new Schema({
     type: String,
     default: "",
   },
-  watchedMovies: [
+  watched: [
     {
       movie: {
         type: Schema.Types.ObjectId,

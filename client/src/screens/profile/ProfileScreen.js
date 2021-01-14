@@ -5,7 +5,7 @@ import WatchedMovieList from "../../components/WatchedMovieList";
 import { Card, Col, Row, Image } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { getCurrentUser } from "../../store/actions/userAuthActions";
-
+import "./index.css";
 const ProfileScreen = () => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -13,31 +13,28 @@ const ProfileScreen = () => {
   let { loading, error, user, isAuthenticated } = auth;
 
   useEffect(() => {
-    if (!isAuthenticated || isAuthenticated === undefined) {
-      history.push("/login");
-    } else {
+    console.log(isAuthenticated);
+    if (isAuthenticated) {
+      // history.push("/login");
       dispatch(getCurrentUser());
+    } else {
+      console.log("not logged in");
     }
-  }, [isAuthenticated, history]);
+  }, []);
+  useEffect(() => {
+    console.log(isAuthenticated);
+    if (!isAuthenticated) {
+      history.push("/login");
+    }
+  }, []);
 
   return (
     <div>
-      {loading ? (
+      {loading || user === undefined || user.watched === undefined ? (
         <Loader />
-      ) : user !== null || user.watchedMovies !== undefined ? (
-        <Col md={12} sm={12}>
-          <p>{user.name}</p>
-
-          <Row>
-            <Col lg={12}>
-              <h1>Watched Movies</h1>
-            </Col>
-            {user.watchedMovies !== undefined ? (
-              <WatchedMovieList watched={user.watchedMovies} />
-            ) : null}
-          </Row>
-        </Col>
-      ) : null}
+      ) : (
+        <div>hello</div>
+      )}
     </div>
   );
 };

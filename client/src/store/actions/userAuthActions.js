@@ -26,6 +26,11 @@ export const registerUser = (userData) => async (dispatch) => {
   }
 };
 
+export const setLoggedOutUser = () => {
+  return {
+    type: types.SET_LOGGED_OUT_USER,
+  };
+};
 export const startAuth = () => {
   return {
     type: types.START_AUTH,
@@ -192,6 +197,6 @@ export const logoutUser = () => (dispatch) => {
   // Remove auth header for future requests
   setUserToken(false);
   // Set current user to {} which will set isAuthenticated to false
-  dispatch(setLoggedUser({}));
+  dispatch(setLoggedOutUser());
   dispatch(setSearchedUser({}));
 };

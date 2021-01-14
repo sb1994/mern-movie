@@ -89,7 +89,6 @@ router.get(
   asyncHandler(async (req, res) => {
     // console.log(req.user);
     let { id } = req.user;
-    console.log(req.user);
     //find the user by email
     const user = await User.findById(id)
       .populate("watchedMovies.movie")

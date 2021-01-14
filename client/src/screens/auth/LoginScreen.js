@@ -24,7 +24,6 @@ const LoginScreen = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(loginAuth(email, password));
-    console.log("You can login");
   };
   return (
     <FormContainer>

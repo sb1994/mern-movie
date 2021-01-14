@@ -13,6 +13,7 @@ import { getCurrentUser } from "./store/actions/userAuthActions";
 import setUserToken from "./utils/setUserToken";
 import store from "./store";
 import MovieListScreen from "./screens/movies/MovieListScreen";
+import MovieDetailScreen from "./screens/movies/MovieDetailScreen";
 
 if (localStorage.token) {
   setUserToken(localStorage.token);
@@ -32,11 +33,12 @@ class App extends Component {
         <main className="py-3">
           <Container>
             <Switch>
+              <Route exact path="/" component={LandingScreen} />
               <Route path="/login" component={LoginScreen} />
               <Route path="/register" component={RegisterScreen} />
-              <Route exact path="/" component={LandingScreen} />
               <Route exact path="/profile" component={ProfileScreen} />
               <Route exact path="/movies" component={MovieListScreen} />
+              <Route exact path="/movies/:id" component={MovieDetailScreen} />
             </Switch>
           </Container>
         </main>
