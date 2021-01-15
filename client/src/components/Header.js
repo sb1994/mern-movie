@@ -27,11 +27,6 @@ const Header = () => {
   const logoutHandler = () => {
     dispatch(logoutUser());
   };
-  if (isAuthenticated) {
-    console.log("loggedin");
-  } else {
-    console.log("logged out");
-  }
   return (
     <>
       <Navbar
@@ -65,9 +60,6 @@ const Header = () => {
               ) : (
                 // </LinkContainer>
                 <>
-                  <button className="btn btn-primary" onClick={handleShow}>
-                    Add
-                  </button>
                   <NavDropdown title={user.name} id="username">
                     <LinkContainer to="/profile">
                       <NavDropdown.Item>Profile</NavDropdown.Item>

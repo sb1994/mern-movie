@@ -27,9 +27,6 @@ const MovieListItem = ({ movie }) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const auth = useSelector((state) => state.auth);
-
-  let { isAuthenticated, user } = auth;
   const showMovieDetail = () => {
     history.push(`/movies/${movie._id}`);
   };
@@ -56,9 +53,12 @@ const MovieListItem = ({ movie }) => {
     console.log(alreadyWatched);
     dispatch(removeMovieWatch(movie._id));
   };
+  const auth = useSelector((state) => state.auth);
 
-  let alreadyLiked,
-    alreadyWatched = false;
+  let { isAuthenticated, user } = auth;
+
+  console.log(isAuthenticated);
+  let alreadyLiked, alreadyWatched;
 
   //filter wether the user as already liked the movie
   let { likes, watched } = movie;
@@ -68,11 +68,11 @@ const MovieListItem = ({ movie }) => {
     alreadyWatched = false;
   } else {
     alreadyLiked = likes.some(
-      (like) => like.user.toString() === auth.user._id.toString()
+      (like) => like.user.toString() === user._id.toString()
     );
     // filter wether the user as already watched the movie
     alreadyWatched = watched.some(
-      (watch) => watch.user.toString() === auth.user._id.toString()
+      (watch) => watch.user.toString() === user._id.toString()
     );
   }
 

@@ -43,7 +43,15 @@ const MovieSchema = new Schema({
   },
   genres: [{ id: { type: String }, name: { type: String } }],
   watched: [{ user: { type: Schema.Types.ObjectId, ref: "users" } }],
-  reviews: [ReviewSchema],
+  reviews: [
+    {
+      user: { type: Schema.Types.ObjectId, ref: "users" },
+      review: { type: String },
+      movie: { type: Schema.Types.ObjectId, ref: "movies" },
+      rating: { type: String },
+      created: { default: Date.now },
+    },
+  ],
   likes: [{ user: { type: Schema.Types.ObjectId, ref: "users" } }],
   tmdb_id: {
     type: String,

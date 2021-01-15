@@ -29,7 +29,8 @@ const movie = (state = initialState, action) => {
     case types.GET_MOVIE_SUCCESS:
       return {
         ...state,
-        selectedMovie: action.payload,
+        selectedMovie: action.payload.movie,
+        loading: false,
       };
     case types.GET_MOVIE_REQUEST:
       return {
@@ -41,6 +42,18 @@ const movie = (state = initialState, action) => {
         ...state,
         loading: false,
         error: action.payload,
+      };
+    case types.REMOVE_LIKE_SELECTED_MOVIE:
+      return {
+        ...state,
+        loading: false,
+        selectedMovie: action.payload.selectedMovie,
+      };
+    case types.ADD_LIKE_SELECTED_MOVIE:
+      return {
+        ...state,
+        loading: false,
+        selectedMovie: action.payload.selectedMovie,
       };
     default:
       return state;
